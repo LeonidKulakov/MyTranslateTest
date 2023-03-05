@@ -21,12 +21,12 @@ public class TextConverter {
     public static final String REGEX = "\\pP";
     public static final String REPLACEMENT = " ";
     private final Map<String, String> jMap;
-    private final HttpURLConnection connection;
+    //private final HttpURLConnection connection;
     private final JsonModel jsonModel;
 
     public TextConverter(Map<String, String> jMap) {
         this.jMap = jMap;
-        this.connection = ConnectionService.connectWithTranslator();
+        //this.connection = ConnectionService.connectWithTranslator();
         this.jsonModel = new JsonModel();
         createJsonModel();
     }
@@ -49,15 +49,24 @@ public class TextConverter {
     private String translate(String word) {
         jsonModel.setWord(word);
         String jsonPayload = jsonModel.getJsonFormat();
-        OutputStream os = null;
+
+        HttpURLConnection connection = ConnectionService.connectWithTranslator();
         try {
 
-            os = connection.getOutputStream();
+            OutputStream os = connection.getOutputStream();
             os.write(jsonPayload.getBytes());
             os.flush();
+            os.close();
+
             BufferedReader rb = checkResponseCode(connection.getResponseCode(), connection);
-//            BufferedReader rb = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            return rb.readLine();
+            StringBuilder stringBuilder = new StringBuilder();
+            String sub;
+            while ((sub = rb.readLine()) != null) {
+                stringBuilder.append(sub);
+            }
+
+            connection.disconnect();
+            return stringBuilder.toString();
         } catch (IOException e) {
             LOGGER.log(Level.ERROR, "TextConverter - translate ", e);
             throw new RuntimeException(e);

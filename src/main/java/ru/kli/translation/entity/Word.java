@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 
 @Entity
-
 public class Word {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

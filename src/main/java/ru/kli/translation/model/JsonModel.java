@@ -3,9 +3,9 @@ package ru.kli.translation.model;
 public class JsonModel {
     private String fromLang;
     private String toLang;
-    private String word;
+    private String text;
 
-    public String getJsonFormat(){
+    public String getJsonFormat() {
         return "{" +
                 "\"fromLang\":\"" +
                 fromLang +
@@ -14,10 +14,11 @@ public class JsonModel {
                 toLang +
                 "\"," +
                 "\"text\":\"" +
-                word +
+                text +
                 "\"" +
                 "}";
     }
+
     public String getFromLang() {
         return fromLang;
     }
@@ -35,10 +36,10 @@ public class JsonModel {
     }
 
     public String getWord() {
-        return word;
+        return text;
     }
 
-    public void setWord(String word) {
-        this.word = word;
+    public void setWord(String text) {
+        this.text = text;
     }
 }

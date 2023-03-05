@@ -3,7 +3,6 @@ package ru.kli.translation.service;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
-import ru.kli.translation.controller.SentenceController;
 import ru.kli.translation.type.ConnectionData;
 
 import java.io.IOException;
@@ -13,7 +12,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 public class ConnectionService {
-    private static final Logger LOGGER = Logger.getLogger(SentenceController.class);
+    private static final Logger LOGGER = Logger.getLogger(ConnectionService.class);
     private static final String X_WM_CLIENT_ID = "X-WM-CLIENT-ID";
     private static final String X_WM_CLIENT_SECRET = "X-WM-CLIENT-SECRET";
     private static final String POST = "POST";
@@ -37,13 +36,13 @@ public class ConnectionService {
             connection.setRequestProperty(CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
             return connection;
         } catch (MalformedURLException e) {
-            LOGGER.log(Level.ERROR, e.getMessage());
+            LOGGER.log(Level.ERROR, "ConnectionService URL Error ",e);
             throw new RuntimeException(e);
         } catch (ProtocolException e) {
-            LOGGER.log(Level.ERROR, e.getMessage());
+            LOGGER.log(Level.ERROR, "ConnectionService ",e);
             throw new RuntimeException(e);
         } catch (IOException e) {
-            LOGGER.log(Level.ERROR, e.getMessage());
+            LOGGER.log(Level.ERROR, "ConnectionService ", e);
             throw new RuntimeException(e);
         }
     }

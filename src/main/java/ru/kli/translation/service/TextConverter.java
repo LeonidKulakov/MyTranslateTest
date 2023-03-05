@@ -21,12 +21,10 @@ public class TextConverter {
     public static final String REGEX = "\\pP";
     public static final String REPLACEMENT = " ";
     private final Map<String, String> jMap;
-    //private final HttpURLConnection connection;
     private final JsonModel jsonModel;
 
     public TextConverter(Map<String, String> jMap) {
         this.jMap = jMap;
-        //this.connection = ConnectionService.connectWithTranslator();
         this.jsonModel = new JsonModel();
         createJsonModel();
     }

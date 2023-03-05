@@ -18,26 +18,6 @@ public class JsonsService {
     private JsonsService() {
     }
 
-    /**
-     * @param fromLang язык текста для перевода
-     * @param toLang   язык переведенного текста
-     * @param text     текст для перевода
-     * @return подготовленный к отправке на перевод json
-     */
-    public static String jsonRequestGeneration(String fromLang, String toLang, String text) {
-        return "{" +
-                "\"fromLang\":\"" +
-                fromLang +
-                "\"," +
-                "\"toLang\":\"" +
-                toLang +
-                "\"," +
-                "\"text\":\"" +
-                text +
-                "\"" +
-                "}";
-    }
-
     public static Map<String, String> requestToMap(HttpServletRequest request) {
         try {
             String json = IOUtils.toString(request.getInputStream(), StandardCharsets.UTF_8);
@@ -62,27 +42,4 @@ public class JsonsService {
         return json;
     }
 
-    public static String jsonResponseGeneration(String ip, String fromLang, String toLang, String words) {
-        return new StringBuilder()
-                .append("{")
-                .append("\n")
-                .append("\"ip\":\"")
-                .append(ip)
-                .append("\",")
-                .append("\n")
-                .append("\"fromLang\":\"")
-                .append(fromLang)
-                .append("\",")
-                .append("\n")
-                .append("\"toLang\":\"")
-                .append(toLang)
-                .append("\",")
-                .append("\n")
-                .append("\"text\":\"")
-                .append(words)
-                .append("\"")
-                .append("\n")
-                .append("}")
-                .toString();
-    }
 }

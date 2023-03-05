@@ -3,7 +3,6 @@ package ru.kli.translation.service;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
-import ru.kli.translation.controller.SentenceController;
 import ru.kli.translation.type.ConnectionData;
 
 import java.io.IOException;

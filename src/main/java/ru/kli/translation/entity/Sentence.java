@@ -15,7 +15,7 @@ public class Sentence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date date; // yyyy/MM/dd HH:mm:ss
+    private Date date;
     private String param;
     private String input;
     private String output;
